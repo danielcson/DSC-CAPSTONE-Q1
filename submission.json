@@ -1,0 +1,4 @@
+{
+    "dockerhub-id": "danielcson/capstone-q1:latest",
+    "build-script": "python run.py"
+}
