@@ -1,3 +1,24 @@
+#@title SAC code
+# sac code
+import os
+import random
+import math
+import pickle
+import numpy as np
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch.distributions import Normal
+from torch.optim import Adam
+
+LOG_SIG_MAX = 2
+LOG_SIG_MIN = -20
+epsilon = 1e-6
+
+#@title Environment wrappers
+from dm_env import specs
+
 
 # Initialize Policy weights
 def weights_init_(m):
