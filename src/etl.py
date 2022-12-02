@@ -1,3 +1,32 @@
+#@title More imports and constants
+# plot the activations
+# %matplotlib inline
+
+
+from sklearn.decomposition import PCA
+
+# try out the wrappers
+from acme import wrappers
+from dm_control import suite
+import tree
+
+import imageio
+from PIL import Image
+import io
+
+IMG_HEIGHT = 256
+IMG_WIDTH = 256
+
+# visualizations
+from rsatoolbox import vis
+from rsatoolbox import rdm
+from sklearn.cluster import KMeans
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+
 #@title SAC code
 # sac code
 import os
@@ -18,6 +47,7 @@ epsilon = 1e-6
 
 #@title Environment wrappers
 from dm_env import specs
+
 
 
 # Initialize Policy weights
