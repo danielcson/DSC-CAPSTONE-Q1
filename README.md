@@ -1,1 +1,1 @@
-# DSC-CAPSTONE-Q1
+# Quarter 1 Capstone Project
