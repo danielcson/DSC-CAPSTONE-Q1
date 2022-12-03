@@ -101,10 +101,7 @@ def extract_kinematic_activations():
 
             # record kinematics
             kinematic_dict = get_kinematics(env.physics, CHEETAH_GEOM_NAMES, CHEETAH_JOINT_NAMES, CHEETAH_ACTUATOR_NAMES)
-            # total_kinematic_dict['geom_positions'].append(kinematic_dict['geom_positions'])
-            # total_kinematic_dict['joint_angles'].append(kinematic_dict['joint_angles'])
-            # total_kinematic_dict['joint_velocities'].append(kinematic_dict['joint_velocities'])
-            # total_kinematic_dict['actuator_forces'].append(kinematic_dict['actuator_forces'])
+
             np.append(total_kinematic_dict['geom_positions'], kinematic_dict['geom_positions'])
             np.append(total_kinematic_dict['joint_angles'], kinematic_dict['joint_angles'])
             np.append(total_kinematic_dict['joint_velocities'], kinematic_dict['joint_velocities'])
