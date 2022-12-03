@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import seaborn as sns
+import matplotlib.pyplot as plt
 from dsc_capstone_q1.src.model.train_agent import extract_kinematic_activations
 
 
@@ -73,6 +74,8 @@ def plot_cka_fig():
 
     df_b = pd.DataFrame(figure_5b).drop_duplicates().pivot('kinematic_feature', 'activation', 'cka')
     sns.heatmap(df_b, cbar_kws={'label':'Feature encoding (CKA)'}, cmap="Blues")
+
+    plt.clf()
 
     df_c = pd.DataFrame(figure_5c).pivot('activation_1', 'activation_2', 'cka')
     sns.heatmap(df_c, cbar_kws={'label':'Representational similarity (CKA)'}, cmap="Blues")
