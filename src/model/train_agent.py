@@ -101,10 +101,10 @@ def extract_kinematic_activations():
 
             # record kinematics
             kinematic_dict = get_kinematics(env.physics, CHEETAH_GEOM_NAMES, CHEETAH_JOINT_NAMES, CHEETAH_ACTUATOR_NAMES)
-            total_kinematic_dict['geom_positions'].append(kinematic_dict['geom_positions'])
-            total_kinematic_dict['joint_angles'].append(kinematic_dict['joint_angles'])
-            total_kinematic_dict['joint_velocities'].append(kinematic_dict['joint_velocities'])
-            total_kinematic_dict['actuator_forces'].append(kinematic_dict['actuator_forces'])
+            total_kinematic_dict['geom_positions'].append(kinematic_dict['geom_positions'].tolist())
+            total_kinematic_dict['joint_angles'].append(kinematic_dict['joint_angles'].tolist())
+            total_kinematic_dict['joint_velocities'].append(kinematic_dict['joint_velocities'].tolist())
+            total_kinematic_dict['actuator_forces'].append(kinematic_dict['actuator_forces'].tolist())
             # record reward
             episode_reward += time_step.reward
         print('Episode: {} Reward: {}'.format(i, episode_reward))
