@@ -3,7 +3,6 @@ import pandas as pd
 import seaborn as sns
 from dsc_capstone_q1.src.model.train_agent import extract_kinematic_activations
 
-loaded_hook_dict, total_kinematic_dict = extract_kinematic_activations()
 
 def cka(X,Y):
     # CKA formula from Kornblith et al.,(2019)
@@ -77,4 +76,4 @@ def plot_cka():
     df_c = pd.DataFrame(figure_5c).pivot('activation_1', 'activation_2', 'cka')
     sns.heatmap(df_c, cbar_kws={'label':'Representational similarity (CKA)'}, cmap="Blues")
 
-    return sns.heatmap(df_b, cbar_kws={'label':'Feature encoding (CKA)'}, cmap="Blues")
+    return loaded_hook_dict, total_kinematic_dict
