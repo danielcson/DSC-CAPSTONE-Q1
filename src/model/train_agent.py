@@ -110,13 +110,13 @@ def extract_kinematic_activations():
         print('Episode: {} Reward: {}'.format(i, episode_reward))
 
 
-    loaded_hook_dict = compile_hook_dict(hook_dict)
+    # loaded_hook_dict = compile_hook_dict(hook_dict)
 
-    # process the kinematics - convert the kinematics to numpy arrays
-    total_kinematic_dict['geom_positions'] = np.stack(total_kinematic_dict['geom_positions'],
-                                                    axis=0)  # combine the geom_positions_arr into (t, n, 3)
-    total_kinematic_dict['joint_angles'] = np.array(total_kinematic_dict['joint_angles'])
-    total_kinematic_dict['joint_velocities'] = np.array(total_kinematic_dict['joint_velocities'])
-    total_kinematic_dict['actuator_forces'] = np.array(total_kinematic_dict['actuator_forces'])
+    # # process the kinematics - convert the kinematics to numpy arrays
+    # total_kinematic_dict['geom_positions'] = np.stack(total_kinematic_dict['geom_positions'],
+    #                                                 axis=0)  # combine the geom_positions_arr into (t, n, 3)
+    # total_kinematic_dict['joint_angles'] = np.array(total_kinematic_dict['joint_angles'])
+    # total_kinematic_dict['joint_velocities'] = np.array(total_kinematic_dict['joint_velocities'])
+    # total_kinematic_dict['actuator_forces'] = np.array(total_kinematic_dict['actuator_forces'])
 
-    return loaded_hook_dict, total_kinematic_dict
+    return total_kinematic_dict
