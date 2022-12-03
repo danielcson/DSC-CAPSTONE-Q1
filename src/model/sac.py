@@ -1,13 +1,12 @@
 import os
 import torch
+import torch.nn as nn
 import torch.nn.functional as F
 from torch.optim import Adam
-
 
 """
 From sac.py
 """
-
 
 class SAC(object):
     def __init__(self, num_inputs, action_space, args):
