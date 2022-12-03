@@ -1,7 +1,9 @@
 import numpy as np
 from DSC_CAPSTONE_Q1.src.model.train_agent import extract_kinematic_activations
 
-loaded_hook_dict, total_kinematic_dict = extract_kinematic_activations()
+def test():
+    loaded_hook_dict, total_kinematic_dict = extract_kinematic_activations()
+    return loaded_hook_dict, total_kinematic_dict
 
 def cka(X,Y):
     # CKA formula from Kornblith et al.,(2019)
