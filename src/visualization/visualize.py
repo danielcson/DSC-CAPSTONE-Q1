@@ -28,7 +28,7 @@ def test_func():
     loaded_hook_dict, total_kinematic_dict = extract_kinematic_activations()
     return loaded_hook_dict, total_kinematic_dict
 
-def plot_cka_fig5():
+def plot_cka_fig():
     loaded_hook_dict, total_kinematic_dict = extract_kinematic_activations()
 
     #part b
