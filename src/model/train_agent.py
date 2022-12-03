@@ -55,7 +55,8 @@ def extract_kinematic_activations():
 
     # load checkpoint - UPLOAD YOUR FILE HERE!
     # gdown.download("https://drive.google.com/file/d/13Xug1PoJ3bl3Ya9MTM0p-AR513mtsIVR/view?usp=share_link", fuzzy=True)
-    model_path = '/content/sac_checkpoint_cheetah_123456_10000'
+    # model_path = '/content/sac_checkpoint_cheetah_123456_10000'
+    model_path = '/DSC_CAPSTONE_Q1/src/data'
     agent.load_checkpoint(model_path, evaluate=True)
     print('model loaded')
 
