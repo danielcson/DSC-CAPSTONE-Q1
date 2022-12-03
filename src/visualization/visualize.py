@@ -24,9 +24,6 @@ def cka(X,Y):
     return (x_yt**2).sum() / np.sqrt((x_xt**2).sum() * (y_yt**2).sum())
     # return np.linalg.norm(x=x_yt, ord='fro') / (np.linalg.norm(x=x_xt, ord='fro') * np.linalg.norm(x=y_yt, ord='fro'))
 
-def test_func():
-    loaded_hook_dict, total_kinematic_dict = extract_kinematic_activations()
-    return loaded_hook_dict, total_kinematic_dict
 
 def plot_cka_fig():
     loaded_hook_dict, total_kinematic_dict = extract_kinematic_activations()
@@ -74,10 +71,10 @@ def plot_cka_fig():
             figure_5c['activation_1'].append(activation1)
             figure_5c['activation_2'].append(activation2)
 
-    # df_b = pd.DataFrame(figure_5b).drop_duplicates().pivot('kinematic_feature', 'activation', 'cka')
-    # sns.heatmap(df_b, cbar_kws={'label':'Feature encoding (CKA)'}, cmap="Blues")
+    df_b = pd.DataFrame(figure_5b).drop_duplicates().pivot('kinematic_feature', 'activation', 'cka')
+    sns.heatmap(df_b, cbar_kws={'label':'Feature encoding (CKA)'}, cmap="Blues")
 
-    # df_c = pd.DataFrame(figure_5c).pivot('activation_1', 'activation_2', 'cka')
-    # sns.heatmap(df_c, cbar_kws={'label':'Representational similarity (CKA)'}, cmap="Blues")
+    df_c = pd.DataFrame(figure_5c).pivot('activation_1', 'activation_2', 'cka')
+    sns.heatmap(df_c, cbar_kws={'label':'Representational similarity (CKA)'}, cmap="Blues")
 
     return loaded_hook_dict, total_kinematic_dict
