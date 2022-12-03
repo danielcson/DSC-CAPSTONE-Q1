@@ -25,18 +25,12 @@ def cka(X,Y):
     return (x_yt**2).sum() / np.sqrt((x_xt**2).sum() * (y_yt**2).sum())
     # return np.linalg.norm(x=x_yt, ord='fro') / (np.linalg.norm(x=x_xt, ord='fro') * np.linalg.norm(x=y_yt, ord='fro'))
 
-
-def plot_cka_fig():
-    loaded_hook_dict, total_kinematic_dict = extract_kinematic_activations()
+loaded_hook_dict, total_kinematic_dict = extract_kinematic_activations()
+def plot_cka_5a(loaded_hook_dict, total_kinematic_dict):
 
     #part b
     figure_5b = {'activation' : [],
     'kinematic_feature' : [],
-    'cka' : []}
-
-    #part c
-    figure_5c = {'activation_1' : [],
-    'activation_2' : [],
     'cka' : []}
 
     # nested loop through each combination and add to the dictionary
@@ -61,6 +55,16 @@ def plot_cka_fig():
                 figure_5b['kinematic_feature'].append(feat)
                 figure_5b['cka'].append(cka_calc)
 
+    df_b = pd.DataFrame(figure_5b).drop_duplicates().pivot('kinematic_feature', 'activation', 'cka')
+    plot_b = sns.heatmap(df_b, cbar_kws={'label':'Feature encoding (CKA)'}, cmap="Blues")
+
+    return plot_b
+
+def plot_cka_5c(loaded_hook_dict, total_kinematic_dict):
+    #part c
+    figure_5c = {'activation_1' : [],
+    'activation_2' : [],
+    'cka' : []}
 
     # get combinations between activations
     for activation1 in loaded_hook_dict.keys():
@@ -72,15 +76,7 @@ def plot_cka_fig():
             figure_5c['activation_1'].append(activation1)
             figure_5c['activation_2'].append(activation2)
 
-
-    df_b = pd.DataFrame(figure_5b).drop_duplicates().pivot('kinematic_feature', 'activation', 'cka')
-    plot_b = sns.heatmap(df_b, cbar_kws={'label':'Feature encoding (CKA)'}, cmap="Blues")
-    plt.savefig('cka_5b.png')
-
-    plt.clf()
-
     df_c = pd.DataFrame(figure_5c).pivot('activation_1', 'activation_2', 'cka')
     plot_c = sns.heatmap(df_c, cbar_kws={'label':'Representational similarity (CKA)'}, cmap="Blues")
-    plt.savefig('cka_5c.png')
-
-    return 'completed'
+    return plot_c
+    
