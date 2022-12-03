@@ -3,7 +3,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from dsc_capstone_q1.src.model.train_agent import extract_kinematic_activations
-
+LOADED_HOOK_DICT, TOTAL_KINEMATIC_DICT = extract_kinematic_activations()
 
 def cka(X,Y):
     # CKA formula from Kornblith et al.,(2019)
@@ -25,9 +25,9 @@ def cka(X,Y):
     return (x_yt**2).sum() / np.sqrt((x_xt**2).sum() * (y_yt**2).sum())
     # return np.linalg.norm(x=x_yt, ord='fro') / (np.linalg.norm(x=x_xt, ord='fro') * np.linalg.norm(x=y_yt, ord='fro'))
 
-loaded_hook_dict, total_kinematic_dict = extract_kinematic_activations()
-def plot_cka_5a(loaded_hook_dict, total_kinematic_dict):
 
+def plot_cka_5a(LOADED_HOOK_DICT, TOTAL_KINEMATIC_DICT):
+    loaded_hook_dict, total_kinematic_dict = LOADED_HOOK_DICT, TOTAL_KINEMATIC_DICT
     #part b
     figure_5b = {'activation' : [],
     'kinematic_feature' : [],
@@ -60,7 +60,8 @@ def plot_cka_5a(loaded_hook_dict, total_kinematic_dict):
 
     return plot_b
 
-def plot_cka_5c(loaded_hook_dict, total_kinematic_dict):
+def plot_cka_5c(LOADED_HOOK_DICT, TOTAL_KINEMATIC_DICT):
+    loaded_hook_dict = LOADED_HOOK_DICT
     #part c
     figure_5c = {'activation_1' : [],
     'activation_2' : [],
@@ -79,4 +80,3 @@ def plot_cka_5c(loaded_hook_dict, total_kinematic_dict):
     df_c = pd.DataFrame(figure_5c).pivot('activation_1', 'activation_2', 'cka')
     plot_c = sns.heatmap(df_c, cbar_kws={'label':'Representational similarity (CKA)'}, cmap="Blues")
     return plot_c
-    
