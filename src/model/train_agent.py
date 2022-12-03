@@ -1,8 +1,7 @@
-from acme import wrappers
 from dm_control import suite
 import tree
-from wrapper_setup import NormilizeActionSpecWrapper
-from wrapper_setup import MujocoActionNormalizer
+from .wrapper_setup import NormilizeActionSpecWrapper
+from .wrapper_setup import MujocoActionNormalizer
 from sac import SAC
 import torch
 from model_utils import init_hook_dict
@@ -10,6 +9,7 @@ from model_utils import recordtodict_hook
 from model_utils import get_flat_obs
 from model_utils import get_kinematics
 from model_utils import compile_hook_dict
+from acme import wrappers
 import numpy as np
 
 
