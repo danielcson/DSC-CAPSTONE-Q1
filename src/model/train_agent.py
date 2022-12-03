@@ -1,8 +1,8 @@
 from acme import wrappers
 from dm_control import suite
 import tree
-from wrappers import NormilizeActionSpecWrapper
-from wrappers import MujocoActionNormalizer
+from wrapper_setup import NormilizeActionSpecWrapper
+from wrapper_setup import MujocoActionNormalizer
 from sac import SAC
 import torch
 from model_utils import init_hook_dict
