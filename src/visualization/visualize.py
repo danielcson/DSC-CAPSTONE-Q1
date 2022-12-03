@@ -72,13 +72,15 @@ def plot_cka_fig():
             figure_5c['activation_1'].append(activation1)
             figure_5c['activation_2'].append(activation2)
 
-    sns.set(style="darkgrid")   # Only need to call this once 
-    fig, (ax1,ax2) = plt.subplots(1,2, figsize=(12,8))
 
     df_b = pd.DataFrame(figure_5b).drop_duplicates().pivot('kinematic_feature', 'activation', 'cka')
-    sns.heatmap(df_b, cbar_kws={'label':'Feature encoding (CKA)'}, cmap="Blues", ax=ax1)
+    plot_b = sns.heatmap(df_b, cbar_kws={'label':'Feature encoding (CKA)'}, cmap="Blues")
+    plt.savefig('cka_5b.png')
+
+    plt.clf()
 
     df_c = pd.DataFrame(figure_5c).pivot('activation_1', 'activation_2', 'cka')
-    sns.heatmap(df_c, cbar_kws={'label':'Representational similarity (CKA)'}, cmap="Blues", ax=ax2)
+    plot_c = sns.heatmap(df_c, cbar_kws={'label':'Representational similarity (CKA)'}, cmap="Blues")
+    plt.savefig('cka_5c.png')
 
     return 'completed'
