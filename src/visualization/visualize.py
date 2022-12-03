@@ -23,6 +23,10 @@ def cka(X,Y):
     # Frobenius norm = root of the sum of squares of the entries when X and Y are centered
     return (x_yt**2).sum() / np.sqrt((x_xt**2).sum() * (y_yt**2).sum())
     # return np.linalg.norm(x=x_yt, ord='fro') / (np.linalg.norm(x=x_xt, ord='fro') * np.linalg.norm(x=y_yt, ord='fro'))
+    
+def test():
+    loaded_hook_dict, total_kinematic_dict = extract_kinematic_activations()
+    return loaded_hook_dict, total_kinematic_dict
 
 def plot_cka():
     loaded_hook_dict, total_kinematic_dict = extract_kinematic_activations()
