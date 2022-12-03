@@ -77,4 +77,4 @@ def plot_cka_fig():
     df_c = pd.DataFrame(figure_5c).pivot('activation_1', 'activation_2', 'cka')
     sns.heatmap(df_c, cbar_kws={'label':'Representational similarity (CKA)'}, cmap="Blues")
 
-    return loaded_hook_dict, total_kinematic_dict
+    return sns.heatmap(df_b, cbar_kws={'label':'Feature encoding (CKA)'}, cmap="Blues")
