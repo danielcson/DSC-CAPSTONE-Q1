@@ -3,6 +3,11 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.optim import Adam
+from model import QNetwork
+from model import GaussianPolicy
+from model import DeterministicPolicy
+from model_utils import hard_update
+from model_utils import soft_update
 
 """
 From sac.py
