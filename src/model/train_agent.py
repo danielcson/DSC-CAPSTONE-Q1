@@ -119,4 +119,4 @@ def extract_kinematic_activations():
         total_kinematic_dict['joint_velocities'] = np.array(total_kinematic_dict['joint_velocities'])
         total_kinematic_dict['actuator_forces'] = np.array(total_kinematic_dict['actuator_forces'])
 
-        return loaded_hook_dict, total_kinematic_dict
+    return loaded_hook_dict, total_kinematic_dict
