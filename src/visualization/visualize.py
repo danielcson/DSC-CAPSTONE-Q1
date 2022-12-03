@@ -26,7 +26,7 @@ def cka(X,Y):
     # return np.linalg.norm(x=x_yt, ord='fro') / (np.linalg.norm(x=x_xt, ord='fro') * np.linalg.norm(x=y_yt, ord='fro'))
 
 
-def plot_cka_5a(LOADED_HOOK_DICT, TOTAL_KINEMATIC_DICT):
+def plot_cka_5b(LOADED_HOOK_DICT, TOTAL_KINEMATIC_DICT):
     loaded_hook_dict, total_kinematic_dict = LOADED_HOOK_DICT, TOTAL_KINEMATIC_DICT
     #part b
     figure_5b = {'activation' : [],
