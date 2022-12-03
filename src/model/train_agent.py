@@ -11,6 +11,7 @@ from model_utils import get_kinematics
 from model_utils import compile_hook_dict
 from acme import wrappers
 import numpy as np
+import gdown
 
 
 def extract_kinematic_activations():
@@ -53,6 +54,7 @@ def extract_kinematic_activations():
     agent = SAC(obs_dim, env.action_spec(), args)
 
     # load checkpoint - UPLOAD YOUR FILE HERE!
+    gdown.download("https://drive.google.com/file/d/13Xug1PoJ3bl3Ya9MTM0p-AR513mtsIVR/view?usp=share_link", fuzzy=True)
     model_path = '/content/sac_checkpoint_cheetah_123456_10000'
     agent.load_checkpoint(model_path, evaluate=True)
 
