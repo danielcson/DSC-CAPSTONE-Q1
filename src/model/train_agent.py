@@ -82,7 +82,7 @@ def extract_kinematic_activations():
 
 
     # run a few episodes just to collect activations
-    num_episodes_to_run = 20
+    num_episodes_to_run = 10
 
     # for recording kinematics
     total_kinematic_dict = {

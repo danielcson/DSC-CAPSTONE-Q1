@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+import rsatoolbox
 from dsc_capstone_q1.src.model.train_agent import extract_kinematic_activations
 LOADED_HOOK_DICT, TOTAL_KINEMATIC_DICT = extract_kinematic_activations()
 
@@ -81,6 +83,23 @@ def plot_cka_5c():
     plot_c = sns.heatmap(df_c, cbar_kws={'label':'Representational similarity (CKA)'}, cmap="Blues")
     return plot_c
 
-def plot_rsa_5a():
+def plot_rsa_5a(activation,kinematic):
+    total_kinematic_dict = TOTAL_KINEMATIC_DICT
+    loaded_hook_dict = LOADED_HOOK_DICT
+    kmeans = KMeans(n_clusters=50, random_state=0).fit(total_kinematic_dict[kinematic])
+    df = pd.DataFrame(total_kinematic_dict[kinematic])
+    df['cluster_label'] = pd.Series(kmeans.labels_)
 
-    return 2
+    all_calcs = []
+    b = loaded_hook_dict[activation]
+
+    for i in range(50):
+      a = df[df['cluster_label']==i].drop(['cluster_label'], axis=1).values
+      c = list(np.dot(a,b.T))
+      all_calcs += c
+
+    out = np.array(all_calcs)
+    data = rsatoolbox.data.Dataset(out)
+    rdms = rsatoolbox.rdm.calc_rdm(data)
+    title = activation + ' vs. ' + kinematic
+    rsatoolbox.vis.show_rdm(rdms, rdm_descriptor=title, show_colorbar='panel', figsize=(8,8))
