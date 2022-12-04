@@ -80,3 +80,7 @@ def plot_cka_5c():
     df_c = pd.DataFrame(figure_5c).pivot('activation_1', 'activation_2', 'cka')
     plot_c = sns.heatmap(df_c, cbar_kws={'label':'Representational similarity (CKA)'}, cmap="Blues")
     return plot_c
+
+def plot_rsa_5a():
+
+    return 2
