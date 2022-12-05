@@ -1,0 +1,6 @@
+{
+
+  "kinematic_out": "src/visualization/outputs/cka_activation_vs_kinematic.png",
+  "activation_out": "src/visualization/outputs/cka_activations.png",
+  "rsa_out": "src/visualization/outputs/rsa.png"
+}
