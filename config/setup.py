@@ -38,6 +38,5 @@ else:
 %pip install rsatoolbox
 %pip install --upgrade numpy
 
-# download the pretrained weights
 import gdown
 gdown.download("https://drive.google.com/file/d/13Xug1PoJ3bl3Ya9MTM0p-AR513mtsIVR/view?usp=share_link", fuzzy=True)
