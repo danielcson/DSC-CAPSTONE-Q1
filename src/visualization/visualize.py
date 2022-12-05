@@ -71,7 +71,7 @@ def plot_cka_kinematics():
 
     df_b = pd.DataFrame(figure_5b).drop_duplicates().pivot('kinematic_feature', 'activation', 'cka')
     plot_b = sns.heatmap(df_b, cbar_kws={'label':'Feature encoding (CKA)'}, cmap="Blues")
-    plt.savefig("outputs/cka_activation_vs_kinematic.png")
+    plt.savefig("src/visualization/outputs/cka_activation_vs_kinematic.png")
 
     return plot_b
 
@@ -97,7 +97,7 @@ def plot_cka_activations():
 
     df_c = pd.DataFrame(figure_5c).pivot('activation_1', 'activation_2', 'cka')
     plot_c = sns.heatmap(df_c, cbar_kws={'label':'Representational similarity (CKA)'}, cmap="Blues")
-    plt.savefig("outputs/cka_activations.png")
+    plt.savefig("src/visualization/outputs/cka_activations.png")
     return plot_c
 
 def plot_rsa(activation,kinematic):
@@ -125,5 +125,5 @@ def plot_rsa(activation,kinematic):
     rdms = rsatoolbox.rdm.calc_rdm(data)
     title = activation + ' vs. ' + kinematic
     rsatoolbox.vis.show_rdm(rdms, rdm_descriptor=title, show_colorbar='panel', figsize=(8,8))
-    plt.savefig("outputs/rsa.png")
+    plt.savefig("src/visualization/outputs/rsa.png")
     
