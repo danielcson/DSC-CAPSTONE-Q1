@@ -4,13 +4,19 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 import rsatoolbox
+
+import sys
+# sys.path.append('/home/dson')
+sys.path.append('/Users/danielson/')
+
 from dsc_capstone_q1.src.model.train_agent import extract_kinematic_activations
 # LOADED_HOOK_DICT, TOTAL_KINEMATIC_DICT = extract_kinematic_activations()
-from dsc_capstone_q1.data.test import hook_dict
-from dsc_capstone_q1.data.test import kinematic_dict
+
 from dsc_capstone_q1.src.model.model_utils import load_hook_dict
-LOADED_HOOK_DICT = load_hook_dict(hook_dict)
-TOTAL_KINEMATIC_DICT = load_hook_dict(kinematic_dict)
+
+LOADED_HOOK_DICT = load_hook_dict('test/hook_dict.npy')
+TOTAL_KINEMATIC_DICT = np.load('test/kinematic_dict.npy', allow_pickle=True).item()
+
 
 def cka(X,Y):
     """
@@ -45,6 +51,9 @@ def plot_cka_5b():
     'kinematic_feature' : [],
     'cka' : []}
 
+    for i in total_kinematic_dict:
+        total_kinematic_dict[i] = np.array(total_kinematic_dict[i])
+
     # nested loop through each combination and add to the dictionary
     # if its geom_positions, reshape it from 3d to 2d
 
@@ -69,6 +78,7 @@ def plot_cka_5b():
 
     df_b = pd.DataFrame(figure_5b).drop_duplicates().pivot('kinematic_feature', 'activation', 'cka')
     plot_b = sns.heatmap(df_b, cbar_kws={'label':'Feature encoding (CKA)'}, cmap="Blues")
+    plt.savefig("outputs/cka_activation_vs_kinematic.png")
 
     return plot_b
 
@@ -94,11 +104,14 @@ def plot_cka_5c():
 
     df_c = pd.DataFrame(figure_5c).pivot('activation_1', 'activation_2', 'cka')
     plot_c = sns.heatmap(df_c, cbar_kws={'label':'Representational similarity (CKA)'}, cmap="Blues")
+    plt.savefig("outputs/cka_activations.png")
     return plot_c
 
 def plot_rsa_5a(activation,kinematic):
     """
     plot rsa similarity between kinematic feature and activation layer
+    activation: 'mean_linear' or 'log_std_linear'
+    kinematic: 'joint_angles', 'joint_velocities', 'actuator_forces'
     """
     total_kinematic_dict = TOTAL_KINEMATIC_DICT
     loaded_hook_dict = LOADED_HOOK_DICT
@@ -119,3 +132,4 @@ def plot_rsa_5a(activation,kinematic):
     rdms = rsatoolbox.rdm.calc_rdm(data)
     title = activation + ' vs. ' + kinematic
     rsatoolbox.vis.show_rdm(rdms, rdm_descriptor=title, show_colorbar='panel', figsize=(8,8))
+    plt.savefig("outputs/rsa.png")
