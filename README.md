@@ -5,4 +5,4 @@ Due to issues with running the source code in the terminal on the UCSD Data Scie
 
 No additional data needs to be downloaded to run the source code. To avoid having to spend a few days training the model, a pretrained model is provided and downloaded within the source code from this Google Drive [link](https://drive.google.com/file/d/13Xug1PoJ3bl3Ya9MTM0p-AR513mtsIVR/view)
 
-The goal for the project in section A08 of the Data Science capstone course was to replicate the figures from and build upon the [paper](https://arxiv.org/abs/1911.09451) "Deep Neuroethology of a Virtual Rodent" (Merel et al., 2019). The file run.ipynb outputs the key visualizations from the replication process and can also be found in the accompanying paper.
+The goal for this project is to replicate the figures from and build upon the [paper](https://arxiv.org/abs/1911.09451) "Deep Neuroethology of a Virtual Rodent" (Merel et al., 2019). The file run.ipynb outputs the key visualizations from the replication process and can also be found in the accompanying paper.
