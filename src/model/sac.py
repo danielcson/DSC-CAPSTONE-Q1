@@ -11,6 +11,7 @@ from .model_utils import soft_update
 
 
 class SAC(object):
+    """creates Soft Actor Critic class for the agent's training process"""
     def __init__(self, num_inputs, action_space, args):
 
         self.gamma = args.gamma
@@ -110,8 +111,8 @@ class SAC(object):
 
         return qf1_loss.item(), qf2_loss.item(), policy_loss.item(), alpha_loss.item(), alpha_tlogs.item()
 
-    # Save model parameters
     def save_checkpoint(self, env_name, suffix="", ckpt_path=None):
+        """save model parameters"""
         if not os.path.exists('checkpoints/'):
             os.makedirs('checkpoints/')
         if ckpt_path is None:
@@ -123,8 +124,8 @@ class SAC(object):
                     'critic_optimizer_state_dict': self.critic_optim.state_dict(),
                     'policy_optimizer_state_dict': self.policy_optim.state_dict()}, ckpt_path)
 
-    # Load model parameters
     def load_checkpoint(self, ckpt_path, evaluate=False):
+        """load model parameters"""
         print('Loading models from {}'.format(ckpt_path))
         if ckpt_path is not None:
             checkpoint = torch.load(ckpt_path)

@@ -8,14 +8,15 @@ LOG_SIG_MIN = -20
 epsilon = 1e-6
 
 
-# Initialize Policy weights
 def weights_init_(m):
+    """initialize policy weights"""
     if isinstance(m, nn.Linear):
         torch.nn.init.xavier_uniform_(m.weight, gain=1)
         torch.nn.init.constant_(m.bias, 0)
 
 
 class ValueNetwork(nn.Module):
+    """initialize value network class"""
     def __init__(self, num_inputs, hidden_dim):
         super(ValueNetwork, self).__init__()
 
@@ -33,6 +34,7 @@ class ValueNetwork(nn.Module):
 
 
 class QNetwork(nn.Module):
+    """Q network used to train an agent using SAC"""
     def __init__(self, num_inputs, num_actions, hidden_dim):
         super(QNetwork, self).__init__()
 
@@ -63,6 +65,7 @@ class QNetwork(nn.Module):
 
 
 class GaussianPolicy(nn.Module):
+    """Gaussian policy used to train an agent using SAC"""
     def __init__(self, num_inputs, num_actions, hidden_dim, action_space=None):
         super(GaussianPolicy, self).__init__()
 
@@ -113,6 +116,7 @@ class GaussianPolicy(nn.Module):
 
 
 class DeterministicPolicy(nn.Module):
+    """Deterministic policy used to train an agent using SAC"""
     def __init__(self, num_inputs, num_actions, hidden_dim, action_space=None):
         super(DeterministicPolicy, self).__init__()
         self.linear1 = nn.Linear(num_inputs, hidden_dim)
