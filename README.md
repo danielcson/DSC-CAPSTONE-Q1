@@ -1,4 +1,4 @@
-# Quarter 1 Capstone Project 
+# Capstone Project Q1
 DSC180A Section A08: Imitating Behavior to Model the Brain
 
 Due to issues with running the source code in the terminal on the UCSD Data Science & Machine Learning Platform (dsmlp), but no issues with a Jupyter notebook on dsmlp, run.ipynb is being used as a substitute for a run.py file. This repository can be run by cloning it to dsmlp then running run.ipynb. 
