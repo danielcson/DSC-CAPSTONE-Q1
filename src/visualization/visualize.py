@@ -5,7 +5,12 @@ import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 import rsatoolbox
 from dsc_capstone_q1.src.model.train_agent import extract_kinematic_activations
-LOADED_HOOK_DICT, TOTAL_KINEMATIC_DICT = extract_kinematic_activations()
+# LOADED_HOOK_DICT, TOTAL_KINEMATIC_DICT = extract_kinematic_activations()
+from dsc_capstone_q1.data.test import hook_dict
+from dsc_capstone_q1.data.test import kinematic_dict
+from dsc_capstone_q1.src.model.model_utils import load_hook_dict
+LOADED_HOOK_DICT = load_hook_dict(hook_dict)
+TOTAL_KINEMATIC_DICT = load_hook_dict(kinematic_dict)
 
 def cka(X,Y):
     """
