@@ -14,8 +14,11 @@ from dsc_capstone_q1.src.model.train_agent import extract_kinematic_activations
 
 from dsc_capstone_q1.src.model.model_utils import load_hook_dict
 
+
+# error bc its being paralleized?
+# https://stackoverflow.com/questions/46607973/error-in-python-free-invalid-pointer-0x00007fc3c90dc98e
 LOADED_HOOK_DICT = load_hook_dict('test/hook_dict.npy')
-TOTAL_KINEMATIC_DICT = np.load('test/kinematic_dict.npy', allow_pickle=True).item()
+TOTAL_KINEMATIC_DICT = load_hook_dict('test/kinematic_dict.npy')
 
 
 def cka(X,Y):
@@ -78,7 +81,9 @@ def plot_cka_5b():
 
     df_b = pd.DataFrame(figure_5b).drop_duplicates().pivot('kinematic_feature', 'activation', 'cka')
     plot_b = sns.heatmap(df_b, cbar_kws={'label':'Feature encoding (CKA)'}, cmap="Blues")
+    fig_name = "cka_activation_vs_kinematic.png"
     plt.savefig("outputs/cka_activation_vs_kinematic.png")
+    print(fig_name + ' has been saved to outputs folder')
 
     return plot_b
 
@@ -105,6 +110,7 @@ def plot_cka_5c():
     df_c = pd.DataFrame(figure_5c).pivot('activation_1', 'activation_2', 'cka')
     plot_c = sns.heatmap(df_c, cbar_kws={'label':'Representational similarity (CKA)'}, cmap="Blues")
     plt.savefig("outputs/cka_activations.png")
+    print("cka_activations.png has been saved to outputs folder")
     return plot_c
 
 def plot_rsa_5a(activation,kinematic):
@@ -133,3 +139,4 @@ def plot_rsa_5a(activation,kinematic):
     title = activation + ' vs. ' + kinematic
     rsatoolbox.vis.show_rdm(rdms, rdm_descriptor=title, show_colorbar='panel', figsize=(8,8))
     plt.savefig("outputs/rsa.png")
+    print('rsa.png has been saved to outputs folder')
