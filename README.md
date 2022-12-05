@@ -1,4 +1,4 @@
 # Quarter 1 Capstone Project 
 DSC180A Section A08: Imitating Behavior to Model the Brain
 
-This model can be trained by calling train_cheetah.py after pulling the dependencies in the Dockerfile to DSMLP, but that will take a few days to run. To get around this, the best way is to upload a pretrained model, but DSMLP has issues with the file format. Due to these reasons, you can run the source code on Google Colab by visiting this [link](https://colab.research.google.com/drive/1TDih5q6UMmi-ZFNT5OzUmC6dySQOfhXo?usp=sharing).
+Due to issues with running the source code in the dsmlp terminal, but not Jupyter notebook, run.ipynb is being used as a substitute for a run.py file. This repository can be run by cloning it to dsmlp then running the cells in run.ipynb. 
