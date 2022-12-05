@@ -1,6 +1,3 @@
-"""
-From replay_memory.py
-"""
 import random
 import os
 import pickle

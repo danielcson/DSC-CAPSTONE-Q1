@@ -9,9 +9,6 @@ from .model import DeterministicPolicy
 from .model_utils import hard_update
 from .model_utils import soft_update
 
-"""
-From sac.py
-"""
 
 class SAC(object):
     def __init__(self, num_inputs, action_space, args):

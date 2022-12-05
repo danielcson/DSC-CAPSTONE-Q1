@@ -1,7 +1,3 @@
-
-"""
-From utils.py
-"""
 import os
 import math
 import numpy as np
