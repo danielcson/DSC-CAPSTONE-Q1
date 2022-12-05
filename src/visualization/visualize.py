@@ -4,21 +4,11 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 import rsatoolbox
-
 import sys
-# sys.path.append('/home/dson')
-sys.path.append('/Users/danielson/')
+sys.path.append('/home/dson')
 
 from dsc_capstone_q1.src.model.train_agent import extract_kinematic_activations
-# LOADED_HOOK_DICT, TOTAL_KINEMATIC_DICT = extract_kinematic_activations()
-
-from dsc_capstone_q1.src.model.model_utils import load_hook_dict
-
-
-# error bc its being paralleized?
-# https://stackoverflow.com/questions/46607973/error-in-python-free-invalid-pointer-0x00007fc3c90dc98e
-LOADED_HOOK_DICT = load_hook_dict('test/hook_dict.npy')
-TOTAL_KINEMATIC_DICT = load_hook_dict('test/kinematic_dict.npy')
+LOADED_HOOK_DICT, TOTAL_KINEMATIC_DICT = extract_kinematic_activations()
 
 
 def cka(X,Y):
@@ -44,7 +34,7 @@ def cka(X,Y):
     # return np.linalg.norm(x=x_yt, ord='fro') / (np.linalg.norm(x=x_xt, ord='fro') * np.linalg.norm(x=y_yt, ord='fro'))
 
 
-def plot_cka_5b():
+def plot_cka_kinematics():
     """
     plot cka similarity matrix between activations and kinematic features
     """
@@ -81,13 +71,11 @@ def plot_cka_5b():
 
     df_b = pd.DataFrame(figure_5b).drop_duplicates().pivot('kinematic_feature', 'activation', 'cka')
     plot_b = sns.heatmap(df_b, cbar_kws={'label':'Feature encoding (CKA)'}, cmap="Blues")
-    fig_name = "cka_activation_vs_kinematic.png"
     plt.savefig("outputs/cka_activation_vs_kinematic.png")
-    print(fig_name + ' has been saved to outputs folder')
 
     return plot_b
 
-def plot_cka_5c():
+def plot_cka_activations():
     """
     plot cka similarity matrix between activation layers
     """
@@ -110,10 +98,9 @@ def plot_cka_5c():
     df_c = pd.DataFrame(figure_5c).pivot('activation_1', 'activation_2', 'cka')
     plot_c = sns.heatmap(df_c, cbar_kws={'label':'Representational similarity (CKA)'}, cmap="Blues")
     plt.savefig("outputs/cka_activations.png")
-    print("cka_activations.png has been saved to outputs folder")
     return plot_c
 
-def plot_rsa_5a(activation,kinematic):
+def plot_rsa(activation,kinematic):
     """
     plot rsa similarity between kinematic feature and activation layer
     activation: 'mean_linear' or 'log_std_linear'
@@ -139,4 +126,4 @@ def plot_rsa_5a(activation,kinematic):
     title = activation + ' vs. ' + kinematic
     rsatoolbox.vis.show_rdm(rdms, rdm_descriptor=title, show_colorbar='panel', figsize=(8,8))
     plt.savefig("outputs/rsa.png")
-    print('rsa.png has been saved to outputs folder')
+    
