@@ -8,7 +8,9 @@ from dsc_capstone_q1.src.model.train_agent import extract_kinematic_activations
 LOADED_HOOK_DICT, TOTAL_KINEMATIC_DICT = extract_kinematic_activations()
 
 def cka(X,Y):
-    # CKA formula from Kornblith et al.,(2019)
+    """
+    Implementation of CKA similarity index as formulated by Kornblith et al.,(2019)
+    """
 
     # making a copy prevents modifying original arrays
     X = X.copy()
@@ -29,6 +31,9 @@ def cka(X,Y):
 
 
 def plot_cka_5b():
+    """
+    plot cka similarity matrix between activations and kinematic features
+    """
     loaded_hook_dict, total_kinematic_dict = LOADED_HOOK_DICT, TOTAL_KINEMATIC_DICT
     #part b
     figure_5b = {'activation' : [],
@@ -63,6 +68,9 @@ def plot_cka_5b():
     return plot_b
 
 def plot_cka_5c():
+    """
+    plot cka similarity matrix between activation layers
+    """
     loaded_hook_dict = LOADED_HOOK_DICT
     #part c
     figure_5c = {'activation_1' : [],
@@ -84,6 +92,9 @@ def plot_cka_5c():
     return plot_c
 
 def plot_rsa_5a(activation,kinematic):
+    """
+    plot rsa similarity between kinematic feature and activation layer
+    """
     total_kinematic_dict = TOTAL_KINEMATIC_DICT
     loaded_hook_dict = LOADED_HOOK_DICT
     kmeans = KMeans(n_clusters=50, random_state=0).fit(total_kinematic_dict[kinematic])

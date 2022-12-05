@@ -15,6 +15,9 @@ import gdown
 
 
 def extract_kinematic_activations():
+    """
+    extract the kinematic features and activation layers from the model after running some episodes
+    """
     # load the environment
     env = suite.load(domain_name="cheetah", task_name="run")
     # add wrappers onto the environment

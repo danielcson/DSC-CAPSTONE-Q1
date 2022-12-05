@@ -16,9 +16,8 @@ IMG_HEIGHT = 256
 IMG_WIDTH = 256
 
 
-
-
 def create_log_gaussian(mean, log_std, t):
+    """create log gaussian from calculation"""
     quadratic = -((0.5 * (t - mean) / (log_std.exp())).pow(2))
     l = mean.shape
     log_z = log_std
@@ -28,6 +27,7 @@ def create_log_gaussian(mean, log_std, t):
 
 
 def logsumexp(inputs, dim=None, keepdim=False):
+    """create log sum exp from formula"""
     if dim is None:
         inputs = inputs.view(-1)
         dim = 0
@@ -39,16 +39,19 @@ def logsumexp(inputs, dim=None, keepdim=False):
 
 
 def soft_update(target, source, tau):
+    """perform soft update based on tau"""
     for target_param, param in zip(target.parameters(), source.parameters()):
         target_param.data.copy_(target_param.data * (1.0 - tau) + param.data * tau)
 
 
 def hard_update(target, source):
+    """perform hard update"""
     for target_param, param in zip(target.parameters(), source.parameters()):
         target_param.data.copy_(param.data)
 
 
 def create_stitched_img(env, num_cams=2, img_height=256, img_width=256):
+    """create a single image from multiple images"""
     tmp_img_arr = []
 
     # stitch all the views together
@@ -75,6 +78,7 @@ def create_stitched_img(env, num_cams=2, img_height=256, img_width=256):
 
 
 def get_flat_obs(time_step):
+    """flatten observations into a single array then combine them all into one"""
     # flatten all of the observations into a single array
     flat_obs = tree.flatten(time_step.observation)
     # combine all of the observations into a single array
@@ -102,8 +106,8 @@ def save_video(img_arr, video_name='video.mp4', fps=30):
     return True
 
 
-# create hook function to record activations
 def hook_fn(module, input, output):
+    """create hook function to record activations"""
     print('hook_fn called')
     print('layer name:', module.__class__.__name__)
     # print('input:', input)
@@ -130,15 +134,15 @@ def recordtodict_hook(name, hook_dict):
     return hook_fn
 
 
-# add hooks
 def test_add_hooks(model):
+    """add hooks to dictionary"""
     for name, module in model.named_modules():
         if isinstance(module, torch.nn.Linear):
             module.register_forward_hook(named_hook_fn(name))
 
 
-# initialize a hook_dict that contains an empty list for each layer
 def init_hook_dict(model):
+    """initialize a hook_dict that contains an empty list for each layer"""
     hook_dict = {}
     for name, module in model.named_modules():
         if isinstance(module, torch.nn.Linear):
@@ -146,8 +150,8 @@ def init_hook_dict(model):
     return hook_dict
 
 
-# compile the hook dict into a dict of numpy arrays
 def compile_hook_dict(hook_dict):
+    """compile the hook dict into a dict of numpy arrays"""
     compiled_hook_dict = {}
     for name, hook_list in hook_dict.items():
         if len(hook_list) > 0:
@@ -155,39 +159,40 @@ def compile_hook_dict(hook_dict):
     return compiled_hook_dict
 
 
-# save the hook_dict to a file
 def save_hook_dict(hook_dict, save_path):
+    """save the hook_dict to a file"""
     # compile the hook_dict
     compiled_hook_dict = compile_hook_dict(hook_dict)
     # save the compiled_hook_dict
     np.save(save_path, compiled_hook_dict)
 
 
-# load the hook_dict from a file
 def load_hook_dict(load_path):
+    """load the hook_dict from a file"""
     compiled_hook_dict = np.load(load_path, allow_pickle=True).item()
     return compiled_hook_dict
 
 
 def clear_hook_dict(hook_dict):
-    # clears the items in hook dict in-place
+    """clears the items in hook dict in-place"""
     for name, hook_list in hook_dict.items():
         hook_list.clear()
 
 
-# save the PCA
+
 def save_pca_dict(pca_dict, save_path):
+    """save the PCA dictionary"""
     np.save(save_path, pca_dict)
 
 
-# load the PCA
 def load_pca_dict(load_path):
+    """load PCA dictionary"""
     pca_dict = np.load(load_path, allow_pickle=True).item()
     return pca_dict
 
 
 def get_activations(pca_dict, compiled_hook_dict, layer_name, num_components=2):
-    # get the activations
+    """get activation from model after training"""
     activations = compiled_hook_dict[layer_name]
     # get the pca
     pca = pca_dict[layer_name]
@@ -197,6 +202,7 @@ def get_activations(pca_dict, compiled_hook_dict, layer_name, num_components=2):
 
 
 def plot_activations(activations, layer_name=None, save_path=None, show=False):
+    """plot activations from model"""
     # assumes 2 components
     # grab x and y
     x, y = activations[:, 0], activations[:, 1]
@@ -216,6 +222,7 @@ def plot_activations(activations, layer_name=None, save_path=None, show=False):
 
 
 def plot_single_point(point, activations, pca, layer_name=None):
+    """plot a single point on a graph"""
     transformed = pca.transform(point)
     # make a scatterplot
     fig, ax = plt.subplots(figsize=(10, 10))
@@ -262,6 +269,7 @@ def fig2img(fig):
     return img
 
 def get_kinematics(physics, geom_nams, joint_names, actuator_names):
+    """extract kinematic features"""
     geom_positions = physics.named.data.geom_xpos[geom_nams]
     joint_angles = physics.named.data.qpos[joint_names]
     joint_velocities = physics.named.data.qvel[joint_names]
